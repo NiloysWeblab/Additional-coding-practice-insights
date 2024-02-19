@@ -1,2 +1,3 @@
 # Additional-coding-practice-insights
-Config files for my GitHub profile.
+
+This repository represents my coding practice compilation, featuring a variety of exercises aimed at enhancing both my coding skills and problem-solving abilities.
