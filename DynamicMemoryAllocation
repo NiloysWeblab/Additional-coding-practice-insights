@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void createSpace(int *ptr, int n);
+
+int main(void) {
+int n;
+int *ptr = (int *)malloc(10 * sizeof(int));
+
+if(ptr==NULL){
+    printf("Memory not available");
+    exit(1);
+}
+int i=0;
+while(printf("Enter the number of elements:(enter 0 to exit)\n"), scanf("%d", &n), n>0){
+createSpace(ptr, n);
+    for(int j=0; j<n;j++, i++){
+        scanf("%d", ptr + i);
+    }
+    printf("complete\n");
+}
+
+for(int j=0; j<i; j++){
+    printf("%d ", *(ptr+j));
+}
+
+free(ptr);
+return 0;
+}
+
+
+void createSpace(int *ptr, int n){
+int *newptr = (int*)realloc(ptr, n * sizeof(int));
+
+if(newptr==NULL){
+    printf("memory not available\n");
+    exit(0);
+}
+}
