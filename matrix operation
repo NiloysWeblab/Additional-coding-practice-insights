@@ -1,0 +1,71 @@
+#include <stdio.h>
+
+void bubbleSort(int array[], int size);
+void swap(int *a, int *b);
+void printArray(int array[], int size);
+binarySearch(int array[], int left, int right, int x);
+
+int main(void){
+
+int array[100] =  {738, 947, 869, 253, 736, 441, 354, 616, 322, 265, 697, 79, 144, 410, 188, 919, 829, 161, 626, 722, 455, 420, 340, 283, 474, 691, 778, 611, 111, 677, 407, 7, 683, 576, 740, 120, 107, 653, 924, 373, 840, 948, 373, 950, 782, 797, 226, 972, 383, 563, 807, 562, 323, 666, 38, 811, 79, 711, 109, 809, 695, 8, 997, 484, 237, 464, 750, 26, 549, 894, 467, 687, 518, 957, 384, 130, 406, 49, 592, 22, 654, 877, 345, 440, 985, 252, 535, 928, 14, 536, 981, 667, 412, 479, 191, 899, 707, 408, 67, 109};
+
+int size = sizeof(array)/sizeof(array[0]);
+bubbleSort(array, size);
+printArray(array, size);
+int x;
+while(scanf("%d",&x), x!=0){
+        int r = binarySearch(array, 0, size-1, x);
+ ( r == -1)? printf("not found\n"): printf("found, index is %d\n",r);
+}
+
+return 0;
+}
+
+binarySearch(int array[], int left, int right, int x){
+
+int mid;
+while(left<=right){
+
+    mid = left + (right-left)/2;
+
+    if(array[mid]==x)
+        return mid;
+
+    else if(x<array[mid])
+        right = mid - 1;
+
+    else
+        left = mid + 1;
+}
+
+return -1;
+}
+
+void printArray(int array[], int size){
+    int *ptr = array;
+for(int i=0; i<size; i++){
+    printf("%d ", *ptr++);
+}
+}
+
+void bubbleSort(int array[], int size){
+int change;
+for(int i=0; i<size-1; i++){
+        change = 0;
+    for(int j=0; j<size-i-1; j++){
+        if(array[j]>array[j+1]){
+            swap(&array[j], &array[j+1]);
+            change = 1;
+    }
+
+}
+ if(change==0)
+        return;
+}
+}
+
+void swap(int *a, int *b){
+int temp = a;
+a = b;
+b = temp;
+}
