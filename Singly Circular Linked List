@@ -1,0 +1,82 @@
+#include <stdio.h>
+typedef struct node{
+int data;
+struct node* next;
+}node;
+
+node* head = NULL;
+
+node* createNode(void){
+node* ptr = (struct node*)malloc(sizeof(node));
+
+if(ptr==NULL){
+    printf("memory allocation is failed\n");
+    exit(1);
+}
+
+return ptr;
+}
+
+
+void insertNode(int data){
+node* ptr = createNode();
+   ptr->data = data;
+if(head==NULL){
+    head = ptr;
+    ptr->next = head;
+}
+node* current = head;
+while(current->next!=head){
+    current = current->next;
+}
+
+current->next = ptr;
+ptr->next = head;
+}
+
+void printLinkedList(void){
+node* current = head;
+if(head==NULL){
+    printf("NO element\n");
+    return;
+}
+
+  do {
+        printf("%d ", current->data);
+        current = current->next;
+    } while(current != head);
+
+    printf("\n");
+}
+
+void deleteElement(void){
+node* current = head;
+
+if(head==NULL){
+    printf("No elements\n");
+}
+
+while(current->next->next!=head){
+    current = current->next;
+}
+node* temp = current->next;
+current->next = head;
+free(temp);
+
+
+}
+
+int main(void){
+
+insertNode(54);
+insertNode(4);
+insertNode(32);
+insertNode(53);
+insertNode(6);
+insertNode(78);
+insertNode(23);
+deleteElement();
+deleteElement();
+printLinkedList();
+return 0;
+}
