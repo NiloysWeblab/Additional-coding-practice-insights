@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node{
+int data;
+struct node* previous;
+struct node* next;
+} node;
+
+node* head = NULL;
+
+node* createNode(void){
+
+node* ptr = (node*)malloc(sizeof(node));
+
+if(ptr==NULL){
+    printf("Memory allocation failed\n");
+    exit(1);
+}
+ptr->next = NULL;
+return ptr;
+}
+
+void insertData(int data){
+node* ptr = createNode();
+   ptr->data = data;
+if(head==NULL){
+    head = ptr;
+    ptr->previous = NULL;
+    return;
+}
+  node* current = head;
+  while(current->next!=NULL){
+    current = current->next;
+  }
+
+  ptr->previous = current;
+  current->next = ptr;
+}
+
+void printLinkedList(void){
+node* current = head;
+while(current!=NULL){
+    printf("%d ", current->data);
+    current = current->next;
+}
+printf("\n");
+}
+
+void printReverse(void){
+node* current =head;
+while(current->next!=NULL){
+    current = current->next;
+}
+
+while(current!=NULL){
+    printf("%d ", current->data);
+    current = current->previous;
+}
+
+
+}
+
+int main(void){
+
+insertData(4);
+insertData(3);
+insertData(7);
+insertData(23);
+insertData(83);
+printLinkedList();
+printReverse();
+return 0;
+}
