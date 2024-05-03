@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <string.h>
+
+typedef struct stack{
+int top;
+int capacity;
+int* arr;
+}stack;
+
+stack* createStack(int capacity){
+stack* stk = (stack*)malloc(sizeof(stack));
+stk->top = -1;
+stk->capacity = capacity;
+stk->arr = (int*)malloc(capacity * sizeof(int));
+return stk;
+}
+
+int isFull(stack* stack){
+return stack->top == stack->capacity - 1;
+}
+
+int isEmpty(stack* stack){
+return stack->top == -1;
+}
+
+void push(stack* stack, int data){
+
+if(isFull(stack)){
+    printf("Stack is full\n");
+    return;
+}
+
+stack->arr[++stack->top] = data;
+}
+
+int pop(stack* stack){
+
+if(isEmpty(stack)){
+    printf("stack is empty\n");
+    return INT_MIN;
+}
+
+return stack->arr[stack->top--];
+}
+
+int peek(stack* stack){
+if(isEmpty(stack)){
+    printf("stack is empty\n");
+    return INT_MIN;
+}
+
+return stack->arr[stack->top];
+}
+
+int stackSize(stack* stack){
+return stack->top + 1;
+}
+
+int main(){
+
+stack* stack1 = createStack(10);
+stack* stack2 = createStack(10);
+
+char str[10];
+
+while(scanf(" %s", str), strcmp(str, "stop")!=0){
+    if(strcmp(str, "push")==0){
+        int n;
+        scanf("%d", &n);
+        push(stack1, n);
+    }
+
+    else if(strcmp(str, "pop")==0){
+        int data = pop(stack1);
+        if(data != INT_MIN)
+        printf("pop: %d\n", data);
+    }
+
+    else if(strcmp(str, "peek")==0){
+        printf("peek: %d\n", peek(stack1));
+    }
+
+    else if(strcmp(str, "size")==0){
+        printf("size: %d\n", stackSize(stack1));
+    }
+
+}
+
+printf("All element of stack: \n\n");
+while(isEmpty(stack1)!=1){
+    printf("%d ", pop(stack1));
+}
+printf("\n");
+
+return 0;
+}
