@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+string binary(int b){
+    string bit = "000000";
+    int i=5;
+    while(b>0){
+        if(b%2==1){
+            bit[i] = '1';
+        }
+        b/=2;
+        i--;
+    }
+
+    return bit;
+}
+
+int main(){
+
+    for(int i=1; i<=32; i++){
+        cout << binary(i) << "\n";
+    }
+
+    return 0;
+}
